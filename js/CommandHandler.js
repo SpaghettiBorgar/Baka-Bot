@@ -16,5 +16,11 @@ exports.check = function (msg) {
     default:
       triggered = false;
   }
-  if (triggered) console.log(cmd);
+if (triggered) {
+	if (msg.channel.type === "text")
+	{console.log(`${msg.guild.name}#${msg.channel.name}@${msg.author.username}> ${msg.content}`);}
+	else if (msg.channel.type === "dm")
+	{console.log(`DM@${msg.author.username}> ${msg.content}`);}
+	else if (msg.channel.type === "group") {console.log(`GroupDM@${msg.author.username}> ${msg.content}`);}
+}
 }
