@@ -1,0 +1,26 @@
+{
+  "name": "baka-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js/Baka Bot.js",
+  "dependencies": {
+    "bufferutil": "^3.0.3",
+    "discord.js": "^11.2.1",
+    "fs": "^0.0.1-security",
+    "node-gyp": "^3.6.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DasDoge/Baka-Bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DasDoge/Baka-Bot/issues"
+  },
+  "homepage": "https://github.com/DasDoge/Baka-Bot#readme"
+}
