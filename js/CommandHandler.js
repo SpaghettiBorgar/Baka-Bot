@@ -1,7 +1,7 @@
-const Image = require("./Modules/Image");
-const Standard = require("./Modules/Standard");
-const Text = require("./Modules/Text");
-const Voice = require("./Modules/Voice");
+const Image = require("./Features/Image");
+const Standard = require("./Features/Standard");
+const Text = require("./Features/Text");
+const Voice = require("./Features/Voice");
 
 exports.check = function (msg) {
   let prefix = config.prefix;
@@ -10,13 +10,17 @@ exports.check = function (msg) {
   let arg = msg.content.split(cmd)[1];
   let triggered = true;
   switch (cmd) {
+    //Text commands
     case "ping":
       Text.ping(msg);
+      break;
+    //Image commands
+    case "perhaps":
+      Image.perhaps(msg);
       break;
     default:
       triggered = false;
   }
-
   if (triggered) {
     if (msg.channel.type === "text")
       console.log(`${msg.guild.name}#${msg.channel.name}@${msg.author.username}> ${msg.content}`);

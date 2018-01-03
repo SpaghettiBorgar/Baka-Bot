@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+global.Discord = require("discord.js");
 const fs = require("fs");
 const CommandHandler = require("./CommandHandler");
 
