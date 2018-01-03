@@ -18,6 +18,8 @@ exports.check = function (msg) {
     case "perhaps":
       Image.perhaps(msg);
       break;
+    case "god":
+      Image.god(msg);
     default:
       triggered = false;
   }
