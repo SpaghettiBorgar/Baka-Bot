@@ -20,6 +20,11 @@ exports.check = function (msg) {
       break;
     case "god":
       Image.god(msg);
+      break;
+      //Other Commands
+    case "e621":
+      Standard.e621(msg);
+      break;
     default:
       triggered = false;
   }
