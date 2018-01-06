@@ -14,6 +14,9 @@ exports.check = function (msg) {
     case "ping":
       Text.ping(msg);
       break;
+    case "say":
+      Text.say(msg, arg);
+      break;
     case "owo":
       Text.owo(msg);
     break;

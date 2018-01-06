@@ -9,3 +9,14 @@ exports.owo = function(msg) {
 exports.help =function(msg) {
   msg.channel.send("you need help? kys");
 }
+
+exports.say = function (msg, arg) {
+    let split = arg.split(" ");
+    let string = "";
+    for (let i = 0; i<split.length; i++) {
+        string += split[i] + " ";
+    }
+    if (string)
+        msg.channel.sendMessage(string);
+    msg.delete();
+}
