@@ -10,6 +10,10 @@ exports.help =function(msg) {
   msg.channel.send("you need help? kys");
 }
 
+exports.git =function(msg) {
+  msg.channel.send("https://github.com/DasDoge/Baka-Bot");
+}
+
 exports.say = function (msg, arg) {
     let split = arg.split(" ");
     let string = "";
