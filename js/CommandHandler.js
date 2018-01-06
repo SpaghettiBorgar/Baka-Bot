@@ -15,8 +15,11 @@ exports.check = function (msg) {
       Text.ping(msg);
       break;
     case "owo":
-    Text.owo(msg);
+      Text.owo(msg);
     break;
+    case "help":
+      Text.help(msg);
+      break;
     //Image commands
     case "perhaps":
       Image.perhaps(msg);
@@ -29,8 +32,9 @@ exports.check = function (msg) {
       Standard.e621(msg);
       break;
     case "banmyself":
-      msg.guild.ban(msg.mentions.users.find("username", msg.author.username), {"days": 1, "reason": "k"});
+      Standard.banmyself(msg);
       break;
+    break;
     default:
       triggered = false;
   }
