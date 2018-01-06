@@ -1,4 +1,9 @@
 const request = require('request');
+
+exports.banmyself = function (msg) {
+  msg.guild.ban(msg.mentions.users.find("username", msg.author.username), {"days": 1, "reason": "k"});
+}
+
 exports.e621 = function (msg) {
          //Force commands to only run in NSFW channels
         if (!msg.channel.nsfw) {
