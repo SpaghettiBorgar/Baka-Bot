@@ -17,6 +17,9 @@ exports.check = function (msg) {
     case "say":
       Text.say(msg, arg);
       break;
+    case "git":
+      Text.git(msg);
+      break;
     case "owo":
       Text.owo(msg);
     break;
