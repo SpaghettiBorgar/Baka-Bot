@@ -22,7 +22,7 @@ exports.check = function (msg) {
       break;
     case "owo":
       Text.owo(msg);
-    break;
+      break;
     case "help":
       Text.help(msg);
       break;
@@ -33,9 +33,13 @@ exports.check = function (msg) {
     case "god":
       Image.god(msg);
       break;
+    case "maniagod":
+      Image.maniagod(msg);
+      break;
       //Other Commands
     case "e621":
       Standard.e621(msg);
+      msg.channel.stopTyping();
       break;
     case "banmyself":
       Standard.banmyself(msg);
