@@ -6,7 +6,7 @@ exports.banmyself = function (msg) {
 
 exports.e621 = function (msg) {
          //Force commands to only run in NSFW channels
-        if (!msg.channel.nsfw) {
+        if (!msg.channel.nsfw && !msg.channel.name.startsWith('nsfw')) {
             return msg.channel.send(":x:Lewd-stuff shall only be postet in NSFW-channels!");
         }
 
@@ -30,7 +30,7 @@ exports.e621 = function (msg) {
             },
             headers: {
                 //'User-Agent': 'Rem Discordbot https://github.com/DasWolke/discordbot'
-                'User-Agent': 'Discord Bot'
+                'User-Agent': 'Baka Discord Bot'
             }
         }, (error, response, body) => {
             if (error) {
