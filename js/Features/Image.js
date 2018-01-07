@@ -5,3 +5,7 @@ exports.perhaps = function(msg) {
 exports.god = function(msg) {
   msg.channel.send(new Discord.Attachment("media/god.jpg"));
 }
+
+exports.maniagod = function(msg) {
+  msg.channel.send(new Discord.Attachment("media/maniaGod.png"));
+}
