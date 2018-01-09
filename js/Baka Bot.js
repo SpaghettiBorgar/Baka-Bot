@@ -14,6 +14,8 @@ client.on("ready", () => {
 client.login(config.token);
 
 client.on("message", msg => {
+  if (msg.mentions.everyone)
+    return msg.channel.send("<:mention:400370585584271362>");
   if (msg.author.bot) return;
   CommandHandler.check(msg);
 });
