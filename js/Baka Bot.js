@@ -1,9 +1,12 @@
 global.Discord = require("discord.js");
 const fs = require("fs");
 const CommandHandler = require("./CommandHandler");
+const token = JSON.parse(fs.readFileSync("token.json")).token;
+
 
 global.client = new Discord.Client();
 global.config = JSON.parse(fs.readFileSync("config.json"));
+global.local = JSON.parse(fs.readFileSync(`localisation/${config.language}.json`));
 
 
 client.on("ready", () => {
@@ -11,7 +14,7 @@ client.on("ready", () => {
 	client.user.setGame("#BottoLifesMatter");
 });
 
-client.login(config.token);
+client.login(token);
 
 client.on("message", msg => {
   if (msg.mentions.everyone)
