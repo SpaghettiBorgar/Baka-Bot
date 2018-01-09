@@ -21,6 +21,6 @@ exports.say = function (msg, arg) {
         string += split[i] + " ";
     }
     if (string)
-        msg.channel.sendMessage(string);
+        msg.channel.send(string);
     msg.delete();
 }
