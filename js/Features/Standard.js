@@ -7,9 +7,9 @@ exports.banmyself = function (msg) {
 
 exports.e621 = function (msg) {
          //Force commands to only run in NSFW channels
-        if (!(msg.channel.nsfw && msg.channel.name.startsWith('nsfw')))  {
-            return msg.channel.send(local.channel_not_nsfw);
-        }
+      //  if (!(msg.channel.nsfw || msg.channel.name.substring(0,3)==="nsfw"))  {
+        //    return msg.channel.send(local.channel_not_nsfw);
+        //}
 
         let msgSplit = msg.content.split(' ');
         let msgSearch = '';
