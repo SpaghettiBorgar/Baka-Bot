@@ -5,7 +5,9 @@ const Voice = require("./Features/Voice");
 
 exports.check = function (msg) {
   let prefix = config.prefix;
-  if (!msg.content.substring(0,prefix.length) === prefix) return;
+  if (msg.content === config.tableflip || msg.content === config.unflip)
+    Standard.table(msg);
+  if (msg.content.substring(0,prefix.length) !== prefix) return;
   let cmd = msg.content.substring(prefix.length).split(" ")[0].toLowerCase();
   let arg = msg.content.split(cmd)[1];
   let triggered = true;
