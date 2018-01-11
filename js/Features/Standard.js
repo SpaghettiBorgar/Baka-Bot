@@ -1,5 +1,9 @@
 const request = require('request');
 
+exports.table = function (msg) {
+  
+}
+
 exports.banmyself = function (msg) {
   msg.guild.ban(msg.mentions.users.find("username", msg.author.username), {"days": 1, "reason": "k"});
   msg.channel.send("");
