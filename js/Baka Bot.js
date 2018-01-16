@@ -1,41 +1,42 @@
-global.Discord = require("discord.js");
-const fs = require("fs");
-const CommandHandler = require("./CommandHandler");
-const token = JSON.parse(fs.readFileSync("token.json")).token;
+require('repl').start({});
+exports.run = function() {
+  global.Discord = require("discord.js");
+  const fs = require("fs");
+  const CommandHandler = require("./CommandHandler");
 
-
-global.client = new Discord.Client();
-global.config = JSON.parse(fs.readFileSync("config.json"));
-global.local = JSON.parse(fs.readFileSync(`localisation/${config.language}.json`));
-
-var timeOut = 0;
-
-client.on("ready", () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-	timeOut = 0;
-	client.user.setGame("#BottoLifesMatter");
-});
-
-client.on("disconnect", e => {
-	timeOut = timeOut + 1;
-	setTimeOut(login, Math.pow(2, timeOut));
-});
-
-var login = function(){
-  try {
-  	client.login(token);
-  } catch(err) {
-    timeOut = timeOut + 1;
-    console.log(`login failed, retrying in ${Math.pow(2, timeOut)} seconds`)
-  	return setTimeOut(login, Math.pow(2, timeOut));
+  global.Baka = {
+    config: JSON.parse(fs.readFileSync("config.json")),
+    client: new Discord.Client(),
+    token: JSON.parse(fs.readFileSync("token.json")).token
   }
+
+
+  Baka.client.on("ready", () => {
+    console.log(`Logged in as ${Baka.client.user.tag}!`);
+	  timeOut = 0;
+	  Baka.client.user.setGame("#BottoLifesMatter");
+  });
+
+  Baka.client.on("message", msg => {
+    CommandHandler.check(msg);
+  });
+
+  var login = function(){
+  	Baka.client.login(Baka.token);
+  }
+
+  Baka.load = function() {
+    Baka.commands = {};
+    let commands = fs.readdirSync('./js/Commands/');
+    for (let i=0; i<commands.length; i++) {
+      let item = commands[i];
+      if (item.endsWith(".js")) {
+        item = item.slice(0, -3);
+        Baka.commands[item] = require(`./Commands/${item}`);
+      }
+    }
+  };
+
+  Baka.load();
+  login();
 }
-
-login();
-
-client.on("message", msg => {
-  if (msg.mentions.everyone)
-    return msg.channel.send("<:mention:400370585584271362>");
-  if (msg.author.bot) return;
-  CommandHandler.check(msg);
-});
