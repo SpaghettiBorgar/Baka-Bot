@@ -1,4 +1,4 @@
 @echo off
 echo.
-node "js\Baka Bot"
+node "./js/Baka Bot" -i
 pause
