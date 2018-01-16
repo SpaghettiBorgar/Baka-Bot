@@ -1,4 +1,3 @@
-require('repl').start({});
 exports.run = function() {
   global.Discord = require("discord.js");
   const fs = require("fs");
