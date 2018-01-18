@@ -3,6 +3,6 @@ module.exports = {
   description_nazi: "ein Bild der Möglicherweise-kuh",
   usage: "perhaps",
   func: (msg, arg) => {
-      msg.channel.send(new Discord.Attachment("media/maniaGod.png"));
+      msg.channel.send(new Discord.Attachment("media/perhaps.png"));
   }
 }
