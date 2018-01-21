@@ -1,7 +1,7 @@
 module.exports = {
   description_engrish: "What's this?",
   description_nazi: "WAS IST DAS?",
-  usage: "owo",
+  usage: "owo [index]",
   func: (msg, arg) => {
     let dir = fs.readdirSync("./media/owo/");
     let n = parseInt(arg[0]) + 1;
