@@ -1,6 +1,6 @@
 exports.run = function() {
   global.Discord = require("discord.js");
-  const fs = require("fs");
+  global.fs = require("fs");
   const CommandHandler = require("./CommandHandler");
 
   global.Baka = {
@@ -20,22 +20,23 @@ exports.run = function() {
     CommandHandler.check(msg);
   });
 
-  var login = function(){
+  Baka.login = function() {
   	Baka.client.login(Baka.token);
   }
 
   Baka.load = function() {
-    Baka.commands = {};
-    let commands = fs.readdirSync('./js/Commands/');
-    for (let i=0; i<commands.length; i++) {
-      let item = commands[i];
-      if (item.endsWith(".js")) {
-        item = item.slice(0, -3);
-        Baka.commands[item] = require(`./Commands/${item}`);
+      Baka.commands = {};
+      let commands = fs.readdirSync('./js/Commands/');
+      for (let i=0; i<commands.length; i++) {
+        let item = commands[i];
+        if (item.endsWith(".js")) {
+          item = item.slice(0, -3);
+          delete require.cache[require.resolve(`./Commands/${item}`)];
+          Baka.commands[item] = require(`./Commands/${item}`);
+        }
       }
-    }
   };
 
   Baka.load();
-  login();
+  Baka.login();
 }
