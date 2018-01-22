@@ -1,8 +1,9 @@
 {
-	"token": "",
 	"prefix": "b!",
 	"tableflip": "(╯°□°）╯︵   ┻━┻",
 	"unflip": "┬─┬﻿ ノ( ゜-゜ノ)",
 	"table": true,
-	"tableflipper": null
-}
+	"tableflipper": null,
+	"language": "engrish",
+	"bullywords": ["fuck you", "fucc you", "fak you", "fuck u", "fucc u", "fak u", "kys", "ban yourself", "ban urself", "kill yourself", "kill urself", "your mom", "ur mom"]
+} 

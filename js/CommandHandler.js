@@ -1,8 +1,12 @@
 
 exports.check = msg => {
-
+  let bully = Baka.config.bullywords;
   if (msg.mentions.everyone)
     return msg.channel.send("<:mention:400370585584271362>");
+    for (let i = 0; i < bully.length; i++) {
+      if (msg.content.toLowerCase().includes(bully[i]))
+        return msg.channel.send("**bully = ban**");
+    }
   if (msg.author.bot) return;
   let prefix = Baka.config.prefix;
 
