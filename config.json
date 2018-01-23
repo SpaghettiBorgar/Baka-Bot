@@ -1,5 +1,6 @@
 {
 	"prefix": "b!",
+	"authLink": "https://discordapp.com/api/oauth2/authorize?client_id=352574573813694465&permissions=8&scope=bot",
 	"tableflip": "(╯°□°）╯︵   ┻━┻",
 	"unflip": "┬─┬﻿ ノ( ゜-゜ノ)",
 	"table": true,
