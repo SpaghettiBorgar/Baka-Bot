@@ -1,10 +1,19 @@
 {
 	"prefix": "b!",
 	"authLink": "https://discordapp.com/api/oauth2/authorize?client_id=352574573813694465&permissions=8&scope=bot",
+	"mongoURL": "mongodb://localhost/Baka",
 	"tableflip": "(╯°□°）╯︵   ┻━┻",
 	"unflip": "┬─┬﻿ ノ( ゜-゜ノ)",
 	"table": true,
 	"tableflipper": null,
 	"language": "engrish",
-	"bullywords": ["fuck you", "fucc you", "fak you", "fuck u", "fucc u", "fak u", "kys", "ban yourself", "ban urself", "kill yourself", "kill urself", "your mom", "ur mom"]
-} 
+	"bullywords": [
+		[ ["you", "u", "ur", "your", "yourself", "urself"], ["kill", "ban", "fuck", "fucc", "fak", "fack", "mom", "mum", "mama", "gay"] ],
+		[ ["sucks", "gay", "succs", "sucs", "suks", "sukks", "sucking", "shit", "shet", "suck", "succ", "sukk", "suc", "suk", "shit", "shet"], ["he", "she", "you", "u", "ur", "your", "yourself", "urself", "baka", "bot", "@"] ],
+		[ ["kys", "bys", "noob", "nub", "nup", "noop", "retard", "retart", "asshole", "idiot", "fucker", "succer", "sucker", "dickhead", "no u", "no you"] ],
+		[ ["dick", "cock", "ass", "wiener", "shit", "cum"], ["suck", "eat", "succ", "suc", "suk", "sukk"] ],
+		[ ["fuck", "fucc", "fuk", "fuc", "fukk"], ["off", "of"] ],
+		[ ["baka", "bot"], ["bad", "shitty", "crap"] ]
+	],
+	"bullyexcludes": ["me", "i", "my", "myself", "mine", "we", "our"]
+}
