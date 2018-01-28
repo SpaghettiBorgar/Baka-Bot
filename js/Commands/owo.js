@@ -1,3 +1,5 @@
+var fs = require("fs");
+
 module.exports = {
   description_engrish: "What's this?",
   description_german: "WAS IST DAS?",
