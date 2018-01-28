@@ -1,7 +1,10 @@
 exports.run = function() {
   global.Discord = require("discord.js");
-  global.fs = require("fs");
-  const CommandHandler = require("./CommandHandler");
+  global.mongoose = require("mongoose");
+
+  var fs = require("fs");
+  var CommandHandler = require("./CommandHandler");
+  var Models = require("./Models");
 
   global.Baka = {
     config: JSON.parse(fs.readFileSync("config.json")),
@@ -17,6 +20,7 @@ exports.run = function() {
   });
 
   Baka.client.on("message", msg => {
+    console.log(msg);
     CommandHandler.check(msg);
   });
 
@@ -24,7 +28,23 @@ exports.run = function() {
   	Baka.client.login(Baka.token);
   }
 
+  Baka.connectDB = function() {
+    let db = mongoose.connection;
+    mongoose.connect(Baka.config.mongoURL);
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', function() {
+      console.log(`Connected to ${db.client.s.url}`)
+    });
+  }
+
   Baka.load = function() {
+      //config
+      Baka.config = JSON.parse(fs.readFileSync("config.json"));
+      //CommandHandler
+      delete require.cache[require.resolve("./CommandHandler")];
+      CommandHandler = require("./CommandHandler");
+      CommandHandler.load();
+      //Commands
       Baka.commands = {};
       let commands = fs.readdirSync('./js/Commands/');
       for (let i=0; i<commands.length; i++) {
@@ -37,6 +57,8 @@ exports.run = function() {
       }
   };
 
+  Models.generate();
   Baka.load();
+  Baka.connectDB();
   Baka.login();
 }
