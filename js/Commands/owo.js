@@ -1,3 +1,5 @@
+var fs = require("fs");
+
 module.exports = {
   description_engrish: "What's this?",
   description_nazi: "WAS IST DAS?",
