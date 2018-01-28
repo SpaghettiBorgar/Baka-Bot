@@ -8,8 +8,11 @@
     "discord.js": "^11.2.1",
     "fs": "^0.0.1-security",
     "log-symbols": "^2.1.0",
+    "mongodb": "^3.0.1",
+    "mongoose": "^5.0.1",
     "node-gyp": "^3.6.2",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "uws": "^9.14.0"
   },
   "devDependencies": {},
   "scripts": {
