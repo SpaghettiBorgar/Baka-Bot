@@ -8,11 +8,11 @@
 	"tableflipper": null,
 	"language": "engrish",
 	"bullywords": [
-		[ ["you", "u", "ur", "your", "yourself", "urself"], ["kill", "ban", "fuck", "fucc", "fak", "fack", "mom", "mum", "mama", "gay"] ],
-		[ ["sucks", "gay", "succs", "sucs", "suks", "sukks", "sucking", "shit", "shet", "suck", "succ", "sukk", "suc", "suk", "shit", "shet"], ["he", "she", "you", "u", "ur", "your", "yourself", "urself", "baka", "bot", "@"] ],
-		[ ["kys", "bys", "noob", "nub", "nup", "noop", "retard", "retart", "asshole", "idiot", "fucker", "succer", "sucker", "dickhead", "no u", "no you"] ],
+		[ ["you", "u", "ur", "your", "yourself", "urself", "youre", "you're"], ["kill", "ban", "fuck", "fk", "fucc", "fuk", "nigga", "nigger", "nibba", "fak", "fack", "mom", "mum", "mama", "momm", "gay"] ],
+		[ ["sucks", "gay", "succs", "sux", "sucs", "suks", "sukks", "sucking", "shit", "shet", "suck", "succ", "sukk", "suc", "suk", "shit", "shet"], ["he", "she", "you", "u", "ur", "your", "yourself", "urself", "baka", "bot", "@"] ],
+		[ ["kys", "bys", "noob", "nub", "nab", "nup", "noop", "retard", "retart", "asshole", "nig", "thot", "nigga", "nigga", "nibba", "idiot", "fucker", "succer", "sucker", "dickhead", "no u", "no you"] ],
 		[ ["dick", "cock", "ass", "wiener", "shit", "cum"], ["suck", "eat", "succ", "suc", "suk", "sukk"] ],
-		[ ["fuck", "fucc", "fuk", "fuc", "fukk"], ["off", "of"] ],
+		[ ["fuck", "fucc", "fuk", "fk", "fuc", "fukk"], ["off", "of"] ],
 		[ ["baka", "bot"], ["bad", "shitty", "crap"] ]
 	],
 	"bullyexcludes": ["me", "i", "my", "myself", "mine", "we", "our"]
