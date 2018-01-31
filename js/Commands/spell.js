@@ -1,3 +1,5 @@
+const alphanumeric = /^[a-z0-9 ]+$/i;
+
 module.exports = {
   description_engrish: "get the correct spelling of a word",
   description_german: "korrekte Schreibweise eines Wortes",
@@ -5,6 +7,8 @@ module.exports = {
   func: (msg, arg) => {
     if (arg.length == 0)
       return msg.channel.send(":x: you have to specify a word")
+    if (!alphanumeric.test(arg.join(" ")))
+      return msg.channel.send(":x: message has to be alphanumeric");
     for (let n = 0; n < arg.length; n++) {
       arg[n] = shuffle(arg[n]);
     }
