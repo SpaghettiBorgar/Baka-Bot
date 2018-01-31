@@ -20,7 +20,6 @@ exports.run = function() {
   });
 
   Baka.client.on("message", msg => {
-    console.log(msg);
     CommandHandler.check(msg);
   });
 
