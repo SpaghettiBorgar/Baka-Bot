@@ -1,12 +1,14 @@
 var Bully;
 
 exports.check = msg => {
+  msg.content = msg.content.replace("⁣", "");
   if (msg.mentions.everyone)
     return msg.channel.send("<:mention:400370585584271362>");
   if (exports.checkBully(msg)) {
-
-    msg.react("407142220752224268");
     Bully.note(msg);
+    if (msg.author.id == "108623010520383488")
+      return;
+    msg.react("407142220752224268");
     return;
   }
   if (msg.author.bot) return;
