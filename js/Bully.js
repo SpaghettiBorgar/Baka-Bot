@@ -1,44 +1,46 @@
 const m = require("./Models");
 
 exports.note = msg => {
-  let author = msg.author;
-  let user;
-  let userguild;
 
-  console.log(`${author.username} bullies in ${msg.guild.name}#${msg.channel.name}!`);
-  m.Models.user.findOne({"id": author.id}, (err, qUser) => {  //Find user in database
-    if (err)
-      return console.error(err);
+  console.log(`${msg.author.username} bullies in ${msg.guild.name}#${msg.channel.name}!`);
+  updateGuild(msg.guild.id)
+  .catch(err => {
+    console.error(err);
+  });
 
-    m.Models.guild.findOne({"id": msg.guild.id}, (err, qGuild) => { //Find guild in database
-      if (err)
-        return console.error(err);
-      if (qGuild == null) {   //Create new guild entry if there is none
-        qGuild = new m.Models.guild({id: msg.guild.id, name: msg.guild.name});
-      }
-      userguild = qGuild;
-      userguild.save();
-    }).then( ()=>{
 
-    if (qUser == null) {   //Create new user entry if there is none
-      qUser = new m.Models.user({id: author.id, name: author.user.tag, bullypoints: [{guild: userguild, value: 0}]});
-    }
-    user = qUser;
+  function updateGuild(guildId) {
+    return new Promise((resolve, reject) => {
+      m.Models.guild.findOne({"id":guildId}, (err, qGuild) => {
+        if (err)
+          reject(err);
+        apply(qGuild).then((guild, err) => {
+          debugger;
+          qGuild = guild;
+          qGuild.save();
+        });
+        resolve();
+      });
+    });
+  }
 
-    let bpoints = user.bullypoints;
-    let found = false;
-    for (let i = 0; i < bpoints.length; i++) {    //Search for bullypoints in the specified guild
-        if (bpoints[i].guild.id == userguild.id) {
-          found = true;
-          bpoints[i].value = bpoints[i].value + 1;
+  function apply(guild) {
+    return new Promise((resolve, reject) => {
+      let ind;
+      debugger;
+      for (let i = 0; i < guild.bullies.length; i++) {
+        if (guild.bullies[i].userId == msg.author.id) {
+          ind = i;
           break;
         }
-    }
-    if (found == false) {   //If there was no entry for that guild, add a new one
-      user.bullypoints.push({guild: userguild, value: 1});
-    }
-    user.save();  //Apply changes to the database
-    return;
-  });
-  });
+      }
+      if (ind == null) {
+        guild.bullies.push({userId: msg.author.id, value: 0});
+        ind = guild.bullies.length - 1;
+      }
+      guild.bullies[ind].value++;
+      resolve(guild);
+    });
+  }
+
 }
