@@ -1,18 +1,30 @@
 var mongoose = require("mongoose");
 
-const Schemas = {};
-const Models = {};
+var Schemas = {};
+var Models = {};
+
 Schemas.guild = mongoose.Schema({
   id: String,
-  name: String
+  bullies: [{userId: String, value: {type: Number, default: 0}}],
+  settings: {
+    prefix: {type: String, default: "b!"},
+    language: {type: String, default: "en"}
+  },
+  cmdOptions: [{
+    cmd: String,
+    blacklist: {type: Boolean, default: false},
+    perms: [{
+      kind: Number,
+      roleId: String,
+      permissions: Number,
+      userId: String
+    }]
+  }]
 });
+
 Schemas.user = mongoose.Schema({
   id: String,
-  name: String,
-  bullypoints: [{
-    guild: Schemas.guild,
-    value: Number
-  }]
+  ignore: {type: Boolean, default: false}
 });
 
 exports.generate = function() {
