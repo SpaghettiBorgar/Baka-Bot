@@ -8,7 +8,7 @@ module.exports = {
     let amount = Math.round(parseFloat(arg[0]));
     if (isNaN(amount) || amount == null)
       return;
-    if (amount > 100)
+    if (amount > 200)
       return msg.reply(":x:This is too much!");
     msg.channel.bulkDelete(amount + 1).then(()=>{
       msg.channel.send(":ok_hand:").then(mes=>{
