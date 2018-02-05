@@ -3,14 +3,14 @@ exports.run = function() {
   global.mongoose = require("mongoose");
 
   var fs = require("fs");
-  var CommandHandler = require("./CommandHandler");
+  var MessageHandler = require("./MessageHandler");
   var Models = require("./Models");
 
   global.Baka = {
     config: JSON.parse(fs.readFileSync("config.json")),
     client: new Discord.Client(),
     token: JSON.parse(fs.readFileSync("token.json")).token
-  }
+  };
 
 
   Baka.client.on("ready", () => {
@@ -20,12 +20,16 @@ exports.run = function() {
   });
 
   Baka.client.on("message", msg => {
-    CommandHandler.check(msg);
+    MessageHandler.check(msg);
+  });
+
+  Baka.client.on("messageReactionAdd", (msgRct,usr) => {
+      MessageHandler.react(msgRct,usr);
   });
 
   Baka.login = function() {
   	Baka.client.login(Baka.token);
-  }
+  };
 
   Baka.connectDB = function() {
     let db = mongoose.connection;
@@ -39,10 +43,10 @@ exports.run = function() {
   Baka.load = function() {
       //config
       Baka.config = JSON.parse(fs.readFileSync("config.json"));
-      //CommandHandler
-      delete require.cache[require.resolve("./CommandHandler")];
-      CommandHandler = require("./CommandHandler");
-      CommandHandler.load();
+      //MessageHandler
+      delete require.cache[require.resolve("./MessageHandler")];
+      MessageHandler = require("./MessageHandler");
+      MessageHandler.load();
       //Commands
       Baka.commands = {};
       let commands = fs.readdirSync('./js/Commands/');
