@@ -27,6 +27,10 @@ exports.check = msg => {
   }
 }
 
+exports.react = (msgRct, usr) => {
+  return;
+};
+
 exports.checkBully = msg => {
   let text = ` ${msg.content.toLowerCase()} `;
   let foundSomething = false;
