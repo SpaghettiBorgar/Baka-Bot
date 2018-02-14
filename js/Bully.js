@@ -2,7 +2,7 @@ const m = require("./Models");
 
 exports.note = msg => {
 
-  console.log(`${msg.author.username} bullies in ${msg.guild.name}#${msg.channel.name}!`);
+  //console.log(`${msg.author.username} bullies in ${msg.guild.name}#${msg.channel.name}!`);
   updateGuild(msg.guild.id)
   .catch(err => {
     console.error(err);
@@ -14,6 +14,9 @@ exports.note = msg => {
       m.Models.guild.findOne({"id":guildId}, (err, qGuild) => {
         if (err)
           reject(err);
+        debugger;
+        if (qGuild == null)
+          qGuild = new m.Models.guild({id: guildId});
         apply(qGuild).then((guild, err) => {
           debugger;
           qGuild = guild;

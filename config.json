@@ -7,6 +7,7 @@
 	"table": true,
 	"tableflipper": null,
 	"language": "engrish",
+	"bullyemote": "407142220752224268",
 	"bullywords": [
 		[ ["you", "u", "ur", "your", "yourself", "urself", "youre", "you're"], ["kill", "ban", "fuck", "fk", "fucc", "fuk", "nigga", "nigger", "nibba", "fak", "fack", "mom", "mum", "mama", "momm", "gay"] ],
 		[ ["sucks", "gay", "succs", "sux", "sucs", "suks", "sukks", "sucking", "shit", "shet", "suck", "succ", "sukk", "suc", "suk", "shit", "shet"], ["he", "she", "you", "u", "ur", "your", "yourself", "urself", "baka", "bot", "@"] ],
