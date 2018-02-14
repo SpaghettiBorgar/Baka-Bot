@@ -1,16 +1,8 @@
-var Bully;
-
 exports.check = msg => {
   msg.content = msg.content.replace("⁣", "");
   if (msg.mentions.everyone)
     return msg.channel.send("<:mention:400370585584271362>");
-  if (exports.checkBully(msg)) {
-    Bully.note(msg);
-    if (msg.author.id == "108623010520383488")
-      return;
-    msg.react("407142220752224268");
-    return;
-  }
+
   if (msg.author.bot) return;
   let prefix = Baka.config.prefix;
 
@@ -19,15 +11,25 @@ exports.check = msg => {
   let arg = msg.content.substring(prefix.length).split(" ").splice(1);
 
   if(cmd in Baka.commands) {
-    Baka.commands[cmd].func(msg, arg);
     if (msg.channel.type === "text")
       console.log(`${msg.guild.name}#${msg.channel.name}@${msg.author.username}> ${msg.content}`);
     else if (msg.channel.type === "dm")
       console.log(`DM@${msg.author.username}> ${msg.content}`);
+    try{
+      Baka.commands[cmd].func(msg, arg);
+    } catch(err) {
+      console.error(err);
+      return msg.channel.send(":x:Woops, that command :b:roke");
+    }
   }
 }
 
 exports.react = (msgRct, usr) => {
+  switch(msgRct.emoji.id) {
+    case Baka.config.bullyemote:
+
+      break;
+  }
   return;
 };
 
@@ -37,7 +39,8 @@ exports.checkBully = msg => {
 
   let excludes = Baka.config.bullyexcludes;
   excludes.forEach(item => {
-    if (text.includes(` ${item} `)) return false;
+    if (text.includes(` ${item} `)) return;
+
   });
 
   let bullypairs = Baka.config.bullywords;
@@ -56,12 +59,13 @@ exports.checkBully = msg => {
       }
       if (foundSomething == false)  break;
     }
-    if (foundSomething == true) return true;
+    if (foundSomething == true) {
+        return msg.react(Baka.config.bullyemote);
+    };
   }
 
 }
 
 exports.load = function() {
   delete require.cache[require.resolve("./Bully")];
-  Bully = require("./Bully");
 }

@@ -5,6 +5,7 @@ exports.run = function() {
   var fs = require("fs");
   var MessageHandler = require("./MessageHandler");
   var Models = require("./Models");
+  var Bully = require("./Bully");
 
   global.Baka = {
     config: JSON.parse(fs.readFileSync("config.json")),
@@ -20,7 +21,12 @@ exports.run = function() {
   });
 
   Baka.client.on("message", msg => {
+    if (MessageHandler.checkBully(msg)) {
+      Bully.note(msg);
+      return;
+    }
     MessageHandler.check(msg);
+
   });
 
   Baka.client.on("messageReactionAdd", (msgRct,usr) => {
@@ -47,6 +53,9 @@ exports.run = function() {
       delete require.cache[require.resolve("./MessageHandler")];
       MessageHandler = require("./MessageHandler");
       MessageHandler.load();
+      //Bully
+      delete require.cache[require.resolve(`./Bully`)];
+      Bully = require("./Bully");
       //Commands
       Baka.commands = {};
       let commands = fs.readdirSync('./js/Commands/');

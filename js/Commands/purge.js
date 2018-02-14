@@ -1,4 +1,4 @@
-module.exports = {
+﻿module.exports = {
   description_engrish: "delet a lot of messages",
   description_german: "Lösche viele Nachrichten",
   usage: "purge <amount>",
@@ -8,7 +8,7 @@ module.exports = {
     let amount = Math.round(parseFloat(arg[0]));
     if (isNaN(amount) || amount == null)
       return;
-    if (amount > 200)
+    if (amount > 99)
       return msg.reply(":x:This is too much!");
     msg.channel.bulkDelete(amount + 1).then(()=>{
       msg.channel.send(":ok_hand:").then(mes=>{

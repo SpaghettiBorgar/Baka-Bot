@@ -13,8 +13,11 @@ module.exports = {
     m.Models.guild.findOne({id: msg.guild.id}, (err, qGuild) => {
       if (err)
         console.error(err);
-
+      if (qGuild == null)
+        qGuild = new m.Models.guild({id: msg.guild.id});
       bullies = qGuild.bullies;
+      if (bullies.length == 0)
+        return msg.channel.send("No boolies yet <:woo:413435790245494785>");
       for (let i = 0; i < bullies.length; i++) {
         bullyIds[i] = bullies[i].userId;
       }
@@ -41,17 +44,14 @@ module.exports = {
       let amount = Math.min((arg[0] ? parseInt(arg[0]) : 10), scores.length);
       let embed = new Discord.RichEmbed();
       embed.setTitle(`Bully leaderboards for ${msg.guild.name}`);
-      let nField = "";
       let uField = "";
       let vField = "";
       for (i = 0; i < amount; i++) {
-        nField += `${i+1}\n`;
-        uField += `${scores[i].name}\n`;
+        uField += `${i+1}\t${scores[i].name}\n`;
         vField += `${scores[i].value}\n`;
       }
       embed.setColor(16754447);
-      embed.addField("# ", nField, true);
-      embed.addField("User\t", uField, true);
+      embed.addField("#\tUser\t", uField, true);
       embed.addField("bullypoints", vField, true);
 
       msg.channel.send(embed);
