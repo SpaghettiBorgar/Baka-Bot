@@ -3,6 +3,6 @@ module.exports = {
   description_german: "der einzigwahre",
   usage: "maniagod",
   func: (msg, arg) => {
-      msg.channel.send(new Discord.Attachment("media/maniagod.png"));
+      msg.channel.send(new Discord.Attachment("media/maniagod.jpg"));
   }
 }
