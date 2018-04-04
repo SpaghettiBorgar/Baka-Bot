@@ -53,8 +53,6 @@ module.exports = {
         uField += `${i+1}\t${scores[i].name}\n`;
         vField += `${scores[i].value}\n`;
       }
-      console.log(`uField:`, uField);
-      console.log(`vField:`, vField);
       embed.setColor(16754447);
       embed.addField("#\tUser\t", uField, true);
       embed.addField("bullypoints", vField, true);
