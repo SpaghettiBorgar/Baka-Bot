@@ -1,5 +1,10 @@
 exports.check = msg => {
   msg.content = msg.content.replace("⁣", "");
+
+  if (msg.content.includes(":BestPizza:")) {
+    msg.delete();
+  }
+
   if (msg.mentions.everyone)
     return msg.channel.send("<:mention:400370585584271362>");
 
