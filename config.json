@@ -1,4 +1,5 @@
 {
+	"token": "",
 	"prefix": "!",
 	"owner": "322026657194049536",
 	"authLink": "https://discordapp.com/api/oauth2/authorize?client_id=352574573813694465&permissions=8&scope=bot",
