@@ -1,12 +1,10 @@
 {
 	"prefix": "!",
+	"owner": "322026657194049536",
 	"authLink": "https://discordapp.com/api/oauth2/authorize?client_id=352574573813694465&permissions=8&scope=bot",
 	"mongoURL": "mongodb://localhost/Baka",
 	"tableflip": "(╯°□°）╯︵   ┻━┻",
 	"unflip": "┬─┬﻿ ノ( ゜-゜ノ)",
-	"table": true,
-	"tableflipper": null,
-	"language": "engrish",
 	"bullyemote": "407142220752224268",
 	"bullywords": [
 		[ ["you", "u", "ur", "your", "yourself", "urself", "youre", "you're"], ["kill", "ban", "fuck", "fk", "fucc", "fuk", "nigga", "nigger", "nibba", "fak", "fack", "mom", "mum", "mama", "momm", "gay"] ],

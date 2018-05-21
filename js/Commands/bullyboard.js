@@ -44,7 +44,6 @@ module.exports = {
       let amount = Math.min((arg[0] ? parseInt(arg[0]) : 10), scores.length);
       if (isNaN(amount))
         return msg.channel.send("invalid number >:(");
-      console.log(`amount:`, amount);
       let embed = new Discord.RichEmbed();
       embed.setTitle(`Bully leaderboards for ${msg.guild.name}`);
       let uField = "";
@@ -61,21 +60,3 @@ module.exports = {
     }
   }
 }
-
-/*
-[   MessageEmbedField {
-       embed: [Circular],
-       name: 'Player',
-       value: '#1 Emilia\n\n#2 spaghetto',
-       inline: true },
-     MessageEmbedField {
-       embed: [Circular],
-       name: 'Exp points',
-       value: '63\n\n20',
-       inline: true },
-     MessageEmbedField {
-       embed: [Circular],
-       name: 'Ducks killed',
-       value: '1\n\n2',
-       inline: true } ],
-*/
