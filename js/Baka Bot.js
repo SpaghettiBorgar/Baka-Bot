@@ -10,7 +10,8 @@ exports.run = function() {
   global.Baka = {
     config: JSON.parse(fs.readFileSync("config.json")),
     client: new Discord.Client(),
-    token: JSON.parse(fs.readFileSync("token.json")).token
+    token: JSON.parse(fs.readFileSync("token.json")).token,
+    enabled: true
   };
 
 
@@ -21,6 +22,8 @@ exports.run = function() {
   });
 
   Baka.client.on("message", msg => {
+    if (!Baka.enabled)
+      return;
     if (MessageHandler.checkBully(msg)) {
       Bully.note(msg);
       return;
@@ -30,8 +33,11 @@ exports.run = function() {
   });
 
   Baka.client.on("messageReactionAdd", (msgRct,usr) => {
-      MessageHandler.react(msgRct,usr);
+    if (!Baka.enabled)
+      return;
+    MessageHandler.react(msgRct,usr);
   });
+
 
   Baka.login = function() {
   	Baka.client.login(Baka.token);
@@ -44,6 +50,10 @@ exports.run = function() {
     db.once('open', function() {
       console.log(`Connected to ${db.client.s.url}`)
     });
+  }
+
+  Baka.setEnabled = function(state) {
+    Baka.enabled = state;
   }
 
   Baka.load = function() {
