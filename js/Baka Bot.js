@@ -9,15 +9,17 @@ exports.run = function() {
   var m = require("./Models");
 
   global.Baka = {
-    client: new Discord.Client(),
+    client: new Discord.Client({
+      disableEveryone: true
+    }),
     enabled: true
   };
 
 
   Baka.client.on("ready", () => {
     console.log(`Logged in as ${Baka.client.user.tag}!`);
-	  timeOut = 0;
-	  Baka.client.user.setGame("#BottoLifesMatter");
+    timeOut = 0;
+    Baka.client.user.setGame("#BottoLifesMatter");
   });
 
   Baka.client.on("message", msg => {
@@ -31,15 +33,15 @@ exports.run = function() {
 
   });
 
-  Baka.client.on("messageReactionAdd", (msgRct,usr) => {
+  Baka.client.on("messageReactionAdd", (msgRct, usr) => {
     if (!Baka.enabled)
       return;
-    MessageHandler.react(msgRct,usr);
+    MessageHandler.react(msgRct, usr);
   });
 
 
   Baka.login = function() {
-  	Baka.client.login(Baka.config.token);
+    Baka.client.login(Baka.config.token);
   };
 
   Baka.connectDB = function() {
@@ -56,26 +58,26 @@ exports.run = function() {
   }
 
   Baka.load = function() {
-      //config
-      Baka.config = JSON.parse(fs.readFileSync("config.json"));
-      //MessageHandler
-      delete require.cache[require.resolve("./MessageHandler")];
-      MessageHandler = require("./MessageHandler");
-      MessageHandler.load();
-      //Bully
-      delete require.cache[require.resolve(`./Bully`)];
-      Bully = require("./Bully");
-      //Commands
-      Baka.commands = {};
-      let commands = fs.readdirSync('./js/Commands/');
-      for (let i=0; i<commands.length; i++) {
-        let item = commands[i];
-        if (item.endsWith(".js")) {
-          item = item.slice(0, -3);
-          delete require.cache[require.resolve(`./Commands/${item}`)];
-          Baka.commands[item] = require(`./Commands/${item}`);
-        }
+    //config
+    Baka.config = JSON.parse(fs.readFileSync("config.json"));
+    //MessageHandler
+    delete require.cache[require.resolve("./MessageHandler")];
+    MessageHandler = require("./MessageHandler");
+    MessageHandler.load();
+    //Bully
+    delete require.cache[require.resolve(`./Bully`)];
+    Bully = require("./Bully");
+    //Commands
+    Baka.commands = {};
+    let commands = fs.readdirSync('./js/Commands/');
+    for (let i = 0; i < commands.length; i++) {
+      let item = commands[i];
+      if (item.endsWith(".js")) {
+        item = item.slice(0, -3);
+        delete require.cache[require.resolve(`./Commands/${item}`)];
+        Baka.commands[item] = require(`./Commands/${item}`);
       }
+    }
   };
 
   Baka.load();
