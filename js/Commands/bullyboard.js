@@ -1,62 +1,71 @@
-var m = require("./../Models");
+//var m = require("../Models");
 
 module.exports = {
   description_engrish: "See who bullies the most",
   description_german: "Mobbing Statistiken",
   usage: "bullyboard [page]",
   func: (msg, arg) => {
+    let m = require("../Models");
+    generateEmbed = function generateEmbed() {
 
-    let scores = [];
-    let bullies;
-    let bullyIds = [];
-
-    m.Models.guild.findOne({id: msg.guild.id}, (err, qGuild) => {
-      if (err)
-        console.error(err);
-      if (qGuild == null)
-        qGuild = new m.Models.guild({id: msg.guild.id});
-      bullies = qGuild.bullies;
-      if (bullies.length == 0)
-        return msg.channel.send("No boolies yet <:woo:413435790245494785>");
-      for (let i = 0; i < bullies.length; i++) {
-        bullyIds[i] = bullies[i].userId;
-      }
-
-      fillScores()
-
-    });
-
-    function fillScores() {
-      let members = msg.guild.members.array();
-      for (let i = 0; i < members.length; i++) {
-        if (bullyIds.includes(members[i].id))
-          scores.push({"name": (members[i].nickname ? members[i].nickname : members[i].user.username), "value": bullies[bullyIds.indexOf(members[i].id)].value});
-      }
-
-      scores.sort((a, b) => {
-        return b.value - a.value;
-      });
-
-      generateEmbed();
-    }
-
-    function generateEmbed() {
       let amount = Math.min((arg[0] ? parseInt(arg[0]) : 10), scores.length);
       if (isNaN(amount))
-        return msg.channel.send("invalid number >:(");
+        return "invalid number >:(";
+
       let embed = new Discord.RichEmbed();
       embed.setTitle(`Bully leaderboards for ${msg.guild.name}`);
+      embed.setColor(16754447);
+
       let uField = "";
       let vField = "";
       for (i = 0; i < amount; i++) {
         uField += `${i+1}\t${scores[i].name}\n`;
         vField += `${scores[i].value}\n`;
       }
-      embed.setColor(16754447);
       embed.addField("#\tUser\t", uField, true);
       embed.addField("bullypoints", vField, true);
 
-      msg.channel.send(embed);
-    }
+      return embed;
+
+    };
+
+    let scores = [];
+    let guild = msg.guild;
+    let start = new Date();
+
+    m.guild.findById(msg.guild.id, (err, qGuild) => {
+
+      if (qGuild == null) {
+        qGuild = new m.guild({
+          _id: guild.id
+        });
+        qGuild.save()
+      }
+
+      if (err)
+        console.error(err);
+
+      if (qGuild.bullies.length == 0)
+        return msg.channel.send(
+          "No boolies yet <:woo:413435790245494785>");
+
+      for (bully of qGuild.bullies) {
+        let member = guild.members.find("id", bully._id);
+        if (member) {
+          scores.push({
+            name: member.displayName,
+            value: bully.value
+          });
+        }
+      }
+
+      scores.sort((a, b) => {
+        return b.value - a.value;
+      });
+
+      var emb = generateEmbed();
+      msg.channel.send(emb);
+
+    });
   }
 }
