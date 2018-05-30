@@ -6,11 +6,10 @@ exports.run = function() {
   var MessageHandler = require("./MessageHandler");
   var Models = require("./Models");
   var Bully = require("./Bully");
+  var m = require("./Models");
 
   global.Baka = {
-    config: JSON.parse(fs.readFileSync("config.json")),
     client: new Discord.Client(),
-    token: JSON.parse(fs.readFileSync("token.json")).token,
     enabled: true
   };
 
@@ -40,16 +39,16 @@ exports.run = function() {
 
 
   Baka.login = function() {
-  	Baka.client.login(Baka.token);
+  	Baka.client.login(Baka.config.token);
   };
 
   Baka.connectDB = function() {
     let db = mongoose.connection;
-    mongoose.connect(Baka.config.mongoURL);
     db.on('error', console.error.bind(console, 'connection error:'));
     db.once('open', function() {
       console.log(`Connected to ${db.client.s.url}`)
     });
+    mongoose.connect(Baka.config.mongoURL);
   }
 
   Baka.setEnabled = function(state) {
@@ -79,8 +78,8 @@ exports.run = function() {
       }
   };
 
-  Models.generate();
   Baka.load();
+  m.compile();
   Baka.connectDB();
   Baka.login();
 }
