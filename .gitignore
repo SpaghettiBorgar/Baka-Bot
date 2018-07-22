@@ -4,3 +4,4 @@ token.json
 *.log
 *.sh
 *.bat
+.idea/
