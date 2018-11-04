@@ -8,7 +8,7 @@ exports.handle = function (msg) {
 	else if (msg.content == unflip)
 		Baka.tableflip = null;
 
-	if (!msg.content.startsWith(Baka.config.prefix))
+	if (!msg.content.startsWith(Baka.config.prefix) || msg.author.bot)
 		return;
 	let cmd = msg.content.split(" ")[0].substr(Baka.config.prefix.length);
 	let args = msg.content.split(" ").splice(1);
