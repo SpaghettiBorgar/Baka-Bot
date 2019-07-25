@@ -10,11 +10,14 @@ module.exports = {
 	exec: function (msg, args) {
 		if (sounds[args[0]]) {
 			let channel = msg.member.voiceChannel;
-			if (!channel)
-				msg.channel.send("You need to be in a voice channel.")
-			channel.join().then(connection => {
-				connection.playFile("./media/sounds/" + sounds[args[0]]).on("end", () => { connection.disconnect() });
-			});
+			if (!channel) {
+				msg.channel.send("You need to be in a voice channel.");
+			} else {
+				channel.join().then(connection => {
+					connection.playFile("./media/sounds/" + sounds[args[0]])
+					.on("end", () => { connection.disconnect() });
+				});
+			}
 		} else {
 			msg.channel.send("Available Sounds:\n`" + Object.keys(sounds).join("` `") + "`");
 		}

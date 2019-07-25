@@ -1,5 +1,7 @@
 {
 	"token": "",
 	"prefix": ";",
-	"logTimeFormat": "dd/mm/yy HH:MM:ss"
+	"logTimeFormat": "dd/mm/yy HH:MM:ss",
+	"mongoURL": "mongodb://localhost/Baka",
+	"embedColor": 16754447
 }
