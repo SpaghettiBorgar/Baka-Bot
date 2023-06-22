@@ -4,7 +4,7 @@
   "description": "",
   "main": "js/Baka Bot.js",
   "dependencies": {
-    "bufferutil": "^3.0.3",
+    "bufferutil": "^3.0.5",
     "discord.js": "^11.2.1",
     "fs": "^0.0.1-security",
     "log-symbols": "^2.1.0",
