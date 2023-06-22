@@ -9,7 +9,7 @@
     "fs": "^0.0.1-security",
     "log-symbols": "^2.1.0",
     "mongodb": "^3.0.1",
-    "mongoose": "^5.0.1",
+    "mongoose": "^5.13.19",
     "node-gyp": "^3.6.2",
     "parse-duration": "^0.1.1",
     "pretty-ms": "^3.1.0",
